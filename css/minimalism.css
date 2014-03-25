@@ -1,0 +1,403 @@
+body {
+	background: #FFFFFF;
+	margin: 0;
+	padding: 0;
+	font-family: 'VT323', Arial;
+	font-size: 140%;
+	text-align: center;
+}
+
+button {
+	padding: 0.25em 0.5em;
+	border: solid 1px #ccc;
+	/*border-radius: 1em;*/
+	background: #eee;
+	font-family: 'VT323', Arial;
+	font-size: 120%;
+	text-transform: uppercase;
+}
+button > div {
+	font-size: 65%;
+}
+button:hover {
+	background: #ddd;
+}
+
+div.meter {
+	border: solid 3px black;
+	background: white;
+}
+div.meter > div {
+	background-color: #000000;
+	color: white;
+}
+
+
+
+/* =============== G A M E ============ */
+
+#game {
+	display: block;
+	position: relative;
+	top: 0px; left: 0px;
+	width: 98%;
+	height: 98%;
+	min-width: 600px;
+	min-height: 600px;
+	margin: 0 auto;
+	background-color: white;
+}
+#game > div {
+	position: absolute;
+	/*background-color: rgba(255,255,255,0.8);*/
+}
+
+
+#game > div.inventory {
+	position: absolute;
+	display: none;
+	top: 1em; right: 2em; 
+	/*border: solid 2px black;
+	min-width: 800px;
+	*/
+	min-height: 100px;
+}
+	#game > div.inventory > ol {
+		display: block;
+		padding: 0; margin: 0;
+	}
+	#game > div.inventory > ol > li {
+		display: block;
+		width: 60px;
+		height: 60px;
+		border: solid 2px black;
+		margin: 2px 5px;
+		float: left;
+		background-color: rgba(255,255,255,0.5);
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 100% 100%;
+		color: black;
+		text-shadow: 2px 2px 0 white, -2px -2px 0 white, -2px 0 0 white, 2px 0 0 white;
+		cursor: pointer;
+	}
+
+	#game > div.inventory > ol > li.empty {
+		opacity: 0.1;
+		box-shadow: inset 0 0 0.5em rgba(50,50,50,1.0);
+		background-color: transparent;
+	}
+	#game > div.inventory > ol > li.readied {
+		opacity: 1.0;
+		margin: -3px 3px 0px 0px;
+		border: solid 5px black;
+		box-shadow: 6px 10px 0 rgba(50,50,50,0.5);
+	}
+	#game > div.inventory > ol > li.empty.readied {
+		background-image: url('../images/empty_hand_16.png');
+	}
+
+#game > div.stats {
+	position: absolute;
+	top: 1em; left: 2em;
+	border: solid 0px black;
+	width: auto;
+	min-width: 100px;
+	font-size: 110%;
+	text-transform: uppercase;
+}
+	ul.hearts {
+		display: none;
+		margin: 0;
+		padding: 0;
+		overflow: auto;
+	}
+	ul.hearts > li {
+		display: block;
+		width: 40px; height: 40px;
+		float: left;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+	}
+	ul.hearts > li.full {	background-image: url('../images/heart_full_40.png'); }
+	ul.hearts > li.half {	background-image: url('../images/heart_half_40.png'); }
+	ul.hearts > li.empty {	background-image: url('../images/heart_empty_40.png'); }
+
+	div.stats div.meter {
+		clear: both;
+		margin-top: 0.5em;
+		font-size: 80%;
+	}
+
+	
+	
+	
+#game > div.controls {
+	position: absolute;
+	bottom: 1em; left: 1em;
+	padding: 1em;
+	min-height: 2em;
+	border: solid 0px black;
+	overflow: visible;
+	/*background-color: rgba(255,255,255,0.2);*/
+}
+#game > div.controls button {
+	padding: 0.25em 1em;
+	border: solid 1px #ccc;
+
+}
+	/*#game > div.controls button:hover {
+		background: #ddd;
+	}*/
+	#game > div.controls button.activated {
+		background-color: #ccc;
+	}
+
+#game > div.mapFrame {
+	position: relative;
+	min-width: 600px;
+	min-height: 600px;
+	margin: 0 1em;
+	border: solid 4px black;
+	overflow: auto;
+}
+
+
+
+/* ============ Map ================ */
+
+#game > div.mapFrame > div.map {
+	position: absolute;
+	overflow: show;
+	width: 10000px;
+	height: 100%;
+}
+#game > div.mapFrame > div.map div {
+	position: absolute;
+}
+
+#game > div.mapFrame > div.map > div			/* sky, roads, dialog */
+,#game > div.mapFrame > div.map > div > div 	/* background, aura, entities, foreground */
+{
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+#game > div.mapFrame > div.map > div.sky {
+	background: #ffffff;
+}
+
+#game > div.mapFrame > div.map div.background {
+	/*
+	top: 400px;
+	height: 300px;
+	width: 100%;
+	border-top: solid 3px black;
+	background: rgba(100,100,100,0.5);
+	*/
+}
+
+.actor {
+	width: 60px; 
+	height: 60px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: 100% 100%;	
+	border: solid 0px black;
+}
+	.actor > span.mood {
+		display: block;
+		width: 100%; height: 100%;
+		margin: 0 auto 0 auto;
+		color: black;
+		text-shadow: 1px 1px 0 black;
+		font-family: 'VT323', Arial;
+		font-size: 10px;
+		border: solid 3px black;
+		
+	}
+	.actor.facingLeft {
+		
+	}
+	.actor.facingRight {
+		
+	}
+	.actor.facingLeft.crowned {
+		background-image: url('../images/crown_left_60.png'), url('../images/gak_left_60.png');
+		background-size: auto auto, auto auto;
+		background-position: top center, center center;
+	}
+	.actor.facingRight.crowned {
+		background-image: url('../images/crown_right_60.png'), url('../images/gak_right_60.png');
+		background-size: auto auto, auto auto;
+		background-position: top center, center center;
+	}	
+
+
+.fixture {
+	border: solid 2px black;
+}
+.fixture.berry_bush {
+	/*background-image: url('../images/berry_bush_60.png');*/
+	background-color: rgba(0,200,50,0.9);
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: 100% 100%;
+	border: solid 3px white;
+	border-radius: 120px;
+}
+.fixture.berry_bush.smallDamage {
+	
+	opacity: 0.6;
+}
+.fixture.berry_bush.bigDamage {
+	
+	opacity: 0.3;
+}
+.fixture.pine_tree {
+	background-color: rgba(0,200,50,0.9);
+	background-repeat: no-repdeat;
+	background-position: bottom center;
+	background-size: 100% 100%;
+	/*background-color: rgba(0,150,20,0.7);*/
+	border: solid 3px white;
+	border-radius: 120px;
+}
+.fixture.pine_tree.smallDamage {
+	opacity: 0.6;
+}
+.fixture.pine_tree.bigDamage {
+	opacity: 0.3;
+}
+
+
+.item {
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: 100% 100%;
+}
+.item.log {
+	background-color: #663300;
+}
+.item.berries {
+	background-color: #990066;
+}
+.item.sharp_stone {
+	background-color: #555555;
+}
+.item.stone {
+	background-color: #666666;
+}
+.item.stone_axe {
+	background-color: #333333;
+}
+.item.stone_spear {
+	background-color: #333333;
+}
+.item.straight_stick {
+	background-color: #996633;
+}
+.item.twisted_stick {
+	background-color: #bb6633;
+}
+
+#game > div.mapFrame > div.map > div.dialog div.bubble {
+	display: block;
+	position: absolute;
+	width: 80px;
+	height: auto;
+	padding: 10px;
+	border: solid 2px black;
+	color: black;
+	text-shadow: 1px 1px 0 white;
+	background-color: white;
+	background-color: rgba(255,255,255,0.8);
+}
+
+
+
+
+
+
+#game > div.menu
+,#game > div.intro
+,#game > div.win
+,#game > div.progress
+{
+	display: none;
+	position: absolute;
+	top: 0; left: 0;
+	border: solid 2px white;
+	width: 100%;
+	height: 90%;
+	padding: 2% 0 8% 0;
+	min-width: 300px;
+	min-height: 300px;
+	background: white;
+	font-size: 110%;
+}
+#game > div.menu p
+,#game > div.intro p
+,#game > div.progress p {
+	width: 50%;
+	min-width: 300px;
+	margin: 1em auto;
+	
+}
+
+
+#game > div.menu > ul {
+	list-style: none;
+	display: block;
+	width: 90%;
+	min-width: 300px;
+	margin: 1em auto;
+	padding: 0;	
+}
+#game > div.menu > ul > li {
+	margin: 1em 0;
+}
+#game > div.menu > ul > li.about {
+
+	border-top: solid 4px black;
+	padding: 2em 2em 1em 2em;
+	margin-left: 30%;
+}
+#game > div.menu > ul > li.credits {
+	font-size: 80%;
+	color: #666;
+}
+#game > div.menu > ul > li.instructions {
+	float: left;
+	padding: 0 1em 1em 0;
+	width: 30%;
+	border-right: solid 4px black;
+}
+
+
+
+#game > div.intro img
+,#game > div.win img {
+	/*float: left;*/
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

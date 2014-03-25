@@ -1,0 +1,10 @@
+humanstxt.org - The humans responsible & technology
+
+TEAM:
+Luke Nickerson
+
+TECHNOLOGY:
+HTML5, CSS3
+    
+jQuery, Modernizr
+Notepad++, Chrome
